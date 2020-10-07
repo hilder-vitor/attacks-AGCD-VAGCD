@@ -110,12 +110,10 @@ B2 = Matrix(ZZ, m, m, B[m:2*m, :])
 Cbar1 = Matrix(ZZ, m, m, Cbar[0:m, :])
 Cbar2 = Matrix(ZZ, m, m, Cbar[m:2*m, :])
 
-
-
 W = B1 * B2^-1
 M = Cbar1 * Cbar2^-1
 
-###### only for debug
+###### just for debugging
 R1 = Matrix(ZZ, m, m, R[0:m, :])
 R2 = Matrix(ZZ, m, m, R[m:2*m, :])
 assert(W == R1 * R2^-1)
@@ -133,63 +131,6 @@ for i in range(m):
         rec_p = gcd(rec_p, A[i, j])
         if log(rec_p, 2) < eta:
             print("recovered p: %d" % rec_p)
-            print("  secret  p: %d" %p)
+            print("   secret p: %d" %p)
             exit(0)
 
-
-
-
-#
-#
-#
-#
-#
-#Cbar = sample_C_bar(p, K, gamma, eta, rho, m, t)
-#R, Q = get_R_Q(p, invK, Cbar)
-#
-#assert((p*Q + R) * K == Cbar)
-#
-#
-#columns_Cbar = [vector(Cbar[:, j]) for j in range(Cbar.ncols())]
-#L = orthogonal_lattice(columns_Cbar)
-#print(L)
-#
-#print("----- v * Cbar ---- ")
-#for v in L.reduced_basis:
-#    print(v * Cbar)
-#
-#set_ort_R = []
-#
-#print("----- v * R ---- ")
-#for v in L.reduced_basis:
-#    u = v * R
-#    if 0 == u:
-#        set_ort_R.append(v)
-#    print(u)
-#
-#print("set_ort_R.len() = %d" % len(set_ort_R))
-#
-#
-#B = Matrix(ZZ, len(set_ort_R), t, set_ort_R)
-#print(B)
-#
-#print("B.rank() = %d" % B.rank())
-#print("t - m = %d" % (t-m))
-#print("t - 2*m = %d" % (t-2*m))
-#
-##print(L.reduced_basis)
-##print(L.reduced_basis.list())
-#
-##basis_vectors = [vector(L.reduced_basis[i, :]) for i in range(L.reduced_basis.nrows())]
-#L_R = orthogonal_lattice(set_ort_R)
-#
-#
-#print("L_R:")
-#print(L_R)
-#
-#B = L_R.reduced_basis.transpose()
-#print("B.nrows() = %d" % B.nrows())
-#print("B.ncols() = %d" % B.ncols())
-#
-#
-#print(B1)
